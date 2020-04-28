@@ -36,14 +36,16 @@
             <img src="/static/images/logo.png" alt="">
         </div>
         <div class="input">
-            <form class="layui-form">
+            <form class="layui-form" method="post" action="{:url('Sign/signInAction')}">
+                <input type="hidden" name="__token__" value="{$Request.token}" />
+<!--                {:token()}-->
                 <div class="layui-form-item x-login-box">
                     <label for="username" class="layui-form-label">
                         <i class="layui-icon">&#xe612;</i>
                     </label>
                     <div class="layui-input-inline">
                         <input type="text" id="username" name="username" required="" lay-verify="username"
-                               autocomplete="off" placeholder="username" class="layui-input">
+                               autocomplete="off" placeholder="请输入账户" class="layui-input">
                     </div>
                 </div>
                 <div class="layui-form-item x-login-box">
@@ -52,7 +54,7 @@
                     </label>
                     <div class="layui-input-inline">
                         <input type="password" id="pass" name="pass" required="" lay-verify="pass"
-                               autocomplete="off" placeholder="******" class="layui-input">
+                               autocomplete="off" placeholder="请输入密码" class="layui-input">
                     </div>
                 </div>
                 <div class="layui-form-item" id="loginbtn">
@@ -82,14 +84,37 @@
             //监听提交
             form.on('submit(save)',
                 function(data) {
-                    console.log(data);
+                    /*console.log(data);
                     layer.alert(JSON.stringify(data.field), {
                         title: '最终的提交信息'
                     },function  () {
                         // location.href = "./index.html";
-                        location.href = "/index/index/index.html";
-                    })
-                    return false;
+                        // location.href = "/index/index/index.html";
+                    })*/
+                    //ajax--start
+                    // $.ajax({
+                    //     url:'/index/Sign/signInAction',
+                    //     //url:"{:url('Sign/signIn')}",
+                    //     method:'post',
+                    //     data:data.field,
+                    //     dataType:'JSON',
+                    //     success:function(res){
+                    //       /*  if(res.code='0'){
+                    //             alert('error');
+                    //             parent.closeIframe(res.msg);
+                    //         }
+                    //         else
+                    //             alert(res.msg);*/
+                    //
+                    //         alert(222222);
+                    //     },
+                    //     error:function (data) {
+                    //         alert(1111111);
+                    //     }
+                    // }) ;
+                    //ajax--start
+                     
+                   // return false;
                 });
 
         });

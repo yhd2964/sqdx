@@ -8,4 +8,8 @@ class VshopCart extends Model{
     public function getCartDataByOpenid(){
 
     }
+
+    public function addShoppingCart(){
+
+    }
 }

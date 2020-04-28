@@ -28,8 +28,8 @@
                     <a href="javascript:;">admin</a>
                     <dl class="layui-nav-child"> <!-- 二级菜单 -->
                         <dd><a href="">个人信息</a></dd>
-                        <dd><a href="">切换帐号</a></dd>
-                        <dd><a href="{:url('/')}">退出</a></dd>
+<!--                        <dd><a href="">切换帐号</a></dd>-->
+                        <dd><a href="{:url('Sign/signIn')}">退出</a></dd>
                     </dl>
                 </li>
                 <!-- <li class="layui-nav-item">
@@ -51,14 +51,14 @@
                     <dl class="layui-nav-child">
                         <dd class="">
                         <dd class="">
-                            <a href="javascript:;" _href="./question-list.html">
+                            <a href="{:url('Sign/signIn')}">
                                 <cite>问题列表</cite>
                             </a>
                         </dd>
                         </dd>
                         <dd class="">
                         <dd class="">
-                            <a href="javascript:;" _href="./question-del.html">
+                            <a href="{:url('Sign/signIn')}">
                                 <cite>删除问题</cite>
                             </a>
                         </dd>
@@ -72,7 +72,7 @@
                     <dl class="layui-nav-child">
                         <dd class="">
                         <dd class="">
-                            <a href="{:url('index/welcome')}" _href="./welcome.html">
+                            <a href="{:url('index/welcome')}" _href="{:url('Goods/goodsList')}">
                                 <cite>产品列表（待开发）</cite>
                             </a>
                         </dd>
@@ -333,7 +333,7 @@
         </ul>
         <div class="layui-tab-content site-demo site-demo-body">
             <div class="layui-tab-item layui-show">
-                <iframe frameborder="0" src="./welcome.html" class="x-iframe"></iframe>
+                <iframe frameborder="0" src="{:url('Index/welcome')}" class="x-iframe"></iframe>
             </div>
         </div>
     </div>
