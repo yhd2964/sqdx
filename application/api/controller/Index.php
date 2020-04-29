@@ -4,6 +4,7 @@ namespace  app\api\controller;
 use app\api\Model\Classify;
 use app\api\Model\MarketingMethods;
 use app\api\Model\User;
+
 use app\common\controller\httpCurl;
 
 use think\console\command\make\Model;
@@ -40,7 +41,10 @@ class Index extends Controller{
             $user = new Model('vshop_user');
             $user->wxid = $openid;
            // $user->unionid = $unionid; //添加  unionid
-            $user->username=$nickName;//jeffrey add
+            $user->username=$nickName;
+            $user->country = $WXCountry;
+            $user->city = $WXCity;
+            $user->province = $WXProvince;
             $user->create_time = date('Y-m-d H:i:s');
             $user->session_key=$wxdata->session_key;
             $rs = $user->save();
@@ -52,7 +56,7 @@ class Index extends Controller{
             $res->agent =1;
             $res->session_key=$wxdata->session_key;
 
-            // 如果前端传来的用户信息不是空的在刷新数据库
+            // 如果前端传来的用户信息不是空的在更新数据库
             if (isset($nickName) && isset($sex) && isset($photo) && $nickName!='' ){
                 if($res->username != $nickName){
                         $res->username = $nickName;
@@ -99,12 +103,13 @@ class Index extends Controller{
                 'data'=>array(
                     'classify'=>$classify,//产品分类
                     'methods'=>$methods,
+                    //其他需要的数据
                 )
             ];
             return json($indexData);
     }
 
-    //根据code获取openid
+    //根据code获取openid，方便
     function getOpenidByCode(){
         $code = isset($_POST['code'])?$_POST['code']:'';
         if (empty($code)){

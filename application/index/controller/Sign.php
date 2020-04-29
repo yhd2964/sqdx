@@ -13,31 +13,31 @@ class Sign extends Controller{
     }
 
 
-    //登录操作
-    public function signInAction(Request $request){
-        $param = $request->param();
-        $username = $param['username'];
-        $pass = $param['pass'];
+    //登录操作处理
+    public function signInAction(){
+        //获取参数
+        //var_dump(input());
+        $username = input('username');
+        $pass = input('pass');
         if (empty($username) || empty($pass)){
-            $this->error('用户名或者密码不能为空','Sign/signIn');
+           $this->error('用户名或者密码不能为空','Sign/signIn');
+            //$data = ['code'=>0,'msg'=>'帐号或者密码不能为空'];
+            //return json($data);
         }
 
         $model = new \app\index\Model\BackendManager();
         $model = $model->where('account',$username)
             ->where('password',$pass)
             ->find();
-        if (isset($model) && !empty($model)){
-            // $data = ['code'=>1,'msg'=>'登录成功'];
-            //return json($data);
-            $view = new View();
-            return $view->fetch('index/welcome');
-        }else{
-            // $data = ['code'=>0,'msg'=>'登录失败'];
-            //return json($data);
 
-            $this->error();
-            $view = new View();
-            return $view->fetch('signIn');
+        if (isset($model) && !empty($model)){
+             $data = ['code'=>1,'msg'=>'登录成功'];
+            return json($data);
+
+        }else{
+             $data = ['code'=>0,'msg'=>'登录失败'];
+             return json($data);
+
         }
     }
 

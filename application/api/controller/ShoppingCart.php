@@ -12,9 +12,10 @@ class ShoppingCart extends Controller{
         $openId = $request->post('openId');
 
         $model = new ShoppingCart();
-        $data = $model->getShoppingCartByOpenid($openId);
+        $res = $model->getShoppingCartByOpenid($openId);
 
-        return $data;
+        $data = ['status'=>1,'data'=>$res];
+        return json($data);
     }
 
     //加入购物车
@@ -50,7 +51,7 @@ class ShoppingCart extends Controller{
         return json($arr);
     }
 
-    //删除购物车
+    //删除购物
     public function deleteShoppingCart(Request $request){
 
     }

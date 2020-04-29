@@ -6,6 +6,12 @@ use think\Controller;
 use think\Request;
 //用户行为
 class Address extends Controller{
+    //获取用户的历史自提点列表
+    public function getAddressListByOpenid(Request $request){
+        $param = $request->param();
+
+    }
+
     //用户添加方便自己的自提点地址
     public function addAddress(Request $request){
         $param = $request->param();

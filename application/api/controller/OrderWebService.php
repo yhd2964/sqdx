@@ -10,6 +10,7 @@ use think\Request;
 class OrderWebService extends Controller{
     //订单提交
     public function submitOrderDetail(Request $request){
+        //获取参数
         $param = $request->param();
         $openId = $param['openId'];//openid
         $ShoppingCartList = $param['ShoppingCartList'];//商品列表
