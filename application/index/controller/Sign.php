@@ -25,7 +25,7 @@ class Sign extends Controller{
             //return json($data);
         }
 
-        $model = new \app\index\Model\BackendManager();
+        $model = new \app\index\model\BackendManager();
         $model = $model->where('account',$username)
             ->where('password',$pass)
             ->find();
