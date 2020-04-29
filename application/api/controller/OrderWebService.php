@@ -12,6 +12,10 @@ class OrderWebService extends Controller{
     public function submitOrderDetail(Request $request){
         //获取参数
         $param = $request->param();
+        if (empty($param)){
+            $data = ['status' => 'error', 'msg' => '缺少参数'];
+            return json($data);
+        }
         $openId = $param['openId'];//openid
         $ShoppingCartList = $param['ShoppingCartList'];//商品列表
         $addressId = $param['addressId'];//选择的自提点id

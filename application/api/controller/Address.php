@@ -6,15 +6,13 @@ use think\Controller;
 use think\Request;
 //用户行为
 class Address extends Controller{
-    //获取用户的历史自提点列表
-    public function getAddressListByOpenid(Request $request){
-        $param = $request->param();
-
-    }
-
     //用户添加方便自己的自提点地址
     public function addAddress(Request $request){
         $param = $request->param();
+        if (empty($param)){
+            $data = ['status' => 'error', 'msg' => '缺少参数'];
+            return json($data);
+        }
         //自提点id
         $addressId = $param['addressId'];
         $openid = $param['openid'];
@@ -33,6 +31,10 @@ class Address extends Controller{
     //删除自提点地址
     public function delAddress(Request $request){
         $param = $request->param();
+        if (empty($param)){
+            $data = ['status' => 'error', 'msg' => '缺少参数addressId'];
+            return json($data);
+        }
         //自提点id
         $addressId = $param['addressId'];
 
@@ -44,5 +46,11 @@ class Address extends Controller{
             $data = ['status' => 'error', 'msg' => '删除失败'];
             return json($data);
         }
+    }
+
+    //获取用户的历史自提点列表
+    public function getAddressListByOpenid(Request $request){
+        $param = $request->param();
+
     }
 }

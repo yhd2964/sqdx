@@ -10,11 +10,15 @@ class ShoppingCart extends Controller{
     //根据用户openid获取用户购物车列表
     public function getShoppingCartByOpenid(Request $request){
         $openId = $request->post('openId');
+        if (empty($param)){
+            $data = ['status' => 'error', 'msg' => '缺少参数'];
+            return json($data);
+        }
 
         $model = new ShoppingCart();
         $res = $model->getShoppingCartByOpenid($openId);
 
-        $data = ['status'=>1,'data'=>$res];
+        $data = ['status'=>'success','data'=>$res];
         return json($data);
     }
 
@@ -33,13 +37,17 @@ class ShoppingCart extends Controller{
         $model->create_time = Db::raw("now()");
         $model->save();
 
-        $arr = array('status'=>0,'msg'=>'加入成功');
+        $arr = array('status'=>'success','msg'=>'加入成功');
         return json($arr);
     }
 
     //改变购物车数量
     public function changeCartNumber(Request $request){
         $param = $request->param();
+        if (empty($param)){
+            $data = ['status' => 'error', 'msg' => '缺少参数'];
+            return json($data);
+        }
         $cartId = $param['cartId'];
         $openId = $param['openId'];
         $num = $param['num'];
@@ -47,7 +55,7 @@ class ShoppingCart extends Controller{
         $model = new VshopCart();
         $model->isUpdate(true)->save(['id'=>$cartId,'num'=>$num]);
 
-        $arr = array('status'=>0,'msg'=>'成功');
+        $arr = array('status'=>'success','msg'=>'成功');
         return json($arr);
     }
 

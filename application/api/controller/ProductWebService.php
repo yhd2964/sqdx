@@ -12,6 +12,10 @@ class ProductWebService extends Controller{
     public function getProductDetail(Request $request){
         //获取参数
         $param = $request->param();
+        if (empty($param)){
+            $data = ['status' => 'error', 'msg' => '缺少参数'];
+            return json($data);
+        }
         $productId = $param['productId'];
 
         //查询结果

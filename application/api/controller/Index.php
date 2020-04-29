@@ -15,6 +15,10 @@ class Index extends Controller{
     //增加新用户
     public function addNewUser(Request $request){
         $param = $request->param();
+        if (empty($param)){
+            $data = ['status' => 'error', 'msg' => '缺少参数'];
+            return json($data);
+        }
         //获取微信基本信息
         $nickName = $param['nickName'];//微信昵称
         $sex = $param['sex'];//性别
