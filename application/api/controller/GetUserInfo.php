@@ -4,7 +4,7 @@ use app\api\Model\User;
 use think\Controller;
 
 class  GetUserInfo extends Controller{
-    //获取用户信息根据openid
+    //根据openid  获取用户信息
     public function  getUserInfoByOpenid(){
         $openid = isset($_POST['openid'])?$_POST['openid']:'';
         if (empty($openid)){

@@ -5,7 +5,7 @@ use think\Model;
 
 class User extends Model{
 
-    protected $table = 'users';
+    protected $table = 'vshop_user';
 
     public function getUserInfoByOpenid($openid){
         $user = new User();

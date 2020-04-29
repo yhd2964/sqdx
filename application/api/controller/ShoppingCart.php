@@ -36,6 +36,20 @@ class ShoppingCart extends Controller{
         return json($arr);
     }
 
+    //改变购物车数量
+    public function changeCartNumber(Request $request){
+        $param = $request->param();
+        $cartId = $param['cartId'];
+        $openId = $param['openId'];
+        $num = $param['num'];
+
+        $model = new VshopCart();
+        $model->isUpdate(true)->save(['id'=>$cartId,'num'=>$num]);
+
+        $arr = array('status'=>0,'msg'=>'成功');
+        return json($arr);
+    }
+
     //删除购物车
     public function deleteShoppingCart(Request $request){
 

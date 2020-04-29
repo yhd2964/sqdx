@@ -1,12 +1,27 @@
 <?php
 namespace app\api\controller;
 
+use app\api\Model\Product;
 use think\console\command\make\Model;
 use think\Controller;
+use think\Request;
 
 class ProductWebService extends Controller{
+    //获取商品详情
+    public function getProductDetail(Request $request){
+        //获取参数
+        $param = $request->param();
+        $productId = $param['productId'];
 
-    //商品搜索列表
+        //查询结果
+        $model = new Product();
+        $result = $model ->where(array('id'=>$productId))->find();
+
+        //返回数据
+
+    }
+
+    //商品列表 + 搜索列表
     public function getAllSearchProductList(){
         //默认请求第一页数据
         $pageIndex = isset($_POST['pageIndex'])?$_POST['pageIndex']:1;
@@ -40,9 +55,9 @@ class ProductWebService extends Controller{
 
         //返回数据
         $arr = array(
-            'errcode' => 0,
-            'errmsg' => 'ok',
-            'dataList' => $dataList
+            'status' => 0,
+            'msg' => 'ok',
+            'data' => $dataList
         );
 
 

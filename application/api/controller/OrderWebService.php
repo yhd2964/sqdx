@@ -2,6 +2,7 @@
 namespace app\api\controller;
 
 use app\api\Model\Order;
+use app\api\Model\PickUpAddress;
 use think\console\command\make\Model;
 use think\Controller;
 use think\Request;
@@ -10,15 +11,15 @@ class OrderWebService extends Controller{
     //订单提交
     public function submitOrderDetail(Request $request){
         $param = $request->param();
-        $openId = $param['openId'];
-        $ShoppingCartList = $param['ShoppingCartList'];
-        $addressId = $param['addressId'];
-        $remark = $param['remark'];
+        $openId = $param['openId'];//openid
+        $ShoppingCartList = $param['ShoppingCartList'];//商品列表
+        $addressId = $param['addressId'];//选择的自提点id
+        $remark = $param['remark'];//备注
 
         $dataList = array();
         //查询默认收货地址
-        $address = new Model('vshop_addresslibrary');
-        $address->find($addressId);
+        $address = new PickUpAddress();
+        $res = $address->find($addressId);
 
 
     }
